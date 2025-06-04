@@ -5,64 +5,50 @@ import Sobre from "./src/pages/Sobre";
 // Fornece o componente que vai envolver nossa navegação!
 import { NavigationContainer } from "@react-navigation/native";
 // Importando as funções da Rota Stack
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Feather from "@expo/vector-icons/Feather";
 
-const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <Drawer.Navigator
         initialRouteName="Home"
         screenOptions={{
-          tabBarActiveBackgroundColor: "purple",
-          tabBarActiveTintColor: "black",
-          tabBarStyle: {
-            backgroundColor: "#fff",
-            height: 50,
-            position: "absolute",
-            bottom: 50,
-            borderTopEndRadius: 15,
-            borderTopColor: "transparent",
-            padding: 10,
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4.65,
-            elevation: 8,
-            width: "80%",
-            left: "10%",
-            marginHorizontal: "10%",
-          },
+          headerTintColor: "grey",
+          headerTitle: "",
+          drawerStyle: { backgroundColor: "#fff" },
+          drawerActiveBackgroundColor: "#000",
+          drawerActiveTintColor: "#fff",
+          drawerInactiveBackgroundColor: "#fff",
+          drawerInactiveTintColor: "#000",
         }}
       >
-        <Tab.Screen
+        <Drawer.Screen
           name="Home"
           component={Home}
           options={{
-            tabBarIcon: ({ color, size }) => {
+            drawerIcon: ({ color, size }) => {
               return <FontAwesome name="home" size={size} color={color} />;
             },
-            headerShown: false,
-            title: "",
           }}
         />
-        <Tab.Screen
+        <Drawer.Screen
           name="Sobre"
           component={Sobre}
           options={{
-            tabBarIcon: ({ color, size }) => {
+            drawerIcon: ({ color, size }) => {
               return (
                 <Feather name="message-circle" size={size} color={color} />
               );
             },
             headerShown: false,
-            title: "",
           }}
         />
-      </Tab.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
